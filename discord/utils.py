@@ -1340,7 +1340,7 @@ def setup_logging(
     """
 
     if level is MISSING:
-        level = logging.INFO
+        level = logging.DEBUG
 
     if handler is MISSING:
         handler = logging.StreamHandler()
