@@ -709,7 +709,6 @@ async def async_all(
 
 
 async def sane_wait_for(futures: Iterable[Awaitable[T]], *, timeout: Optional[float]) -> Set[asyncio.Task[T]]:
-    print(futures, timeout)
     ensured = [asyncio.ensure_future(fut) for fut in futures]
     done, pending = await asyncio.wait(ensured, timeout=timeout, return_when=asyncio.ALL_COMPLETED)
 
@@ -1290,7 +1289,7 @@ class _ColourFormatter(logging.Formatter):
     def format(self, record):
         formatter = self.FORMATS.get(record.levelno)
         if formatter is None:
-            formatter = self.FORMATS[logging.DEBUG]
+            formatter = self.FORMATS[logging.INFO]
 
         # Override the traceback to always print in red
         if record.exc_info:
@@ -1340,7 +1339,7 @@ def setup_logging(
     """
 
     if level is MISSING:
-        level = logging.DEBUG
+        level = logging.INFO
 
     if handler is MISSING:
         handler = logging.StreamHandler()
